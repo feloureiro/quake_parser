@@ -1,0 +1,11 @@
+{
+  "name": "quake_parser",
+  "version": "1.0.0",
+  "description": "Project for applying to enext",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Felipe Loureiro da Silva",
+  "license": "ISC"
+}
