@@ -15,10 +15,13 @@ export class Parser {
         return gameRport;
     }
 
-    task_3(logPath: string, gameId: number) {
+    task_3(logPath: string, gameId: number): any {
         let games: Map<string, any> = this.separateLogByGame(logPath);
         let game = games.get('game_' + gameId);
-        
+        let gameKills = this.mapKillToJson(game.kills);
+        delete game['kills'];
+        game['kills'] = gameKills;
+        return game;
     }
     //Função que le o arquivos de log e o divide em linhas dado o caminho do log
     separateLogByGame(logPath: string): Map<string, any> {
