@@ -3,14 +3,25 @@ export class Parser {
     constructor() { }
 
     task_1(logPath: string) {
-        return this.mapKillToJson(this.separateLogByGame(logPath));
+        return this.mapToJson(this.separateLogByGame(logPath));
     }
 
-    task_2(logPath: string) {
+    task_2(logPath: string): any {
         let games: Map<string, any> = this.separateLogByGame(logPath);
+        let gameRport: any = {};
+        games.forEach((value: any, key: string) => {
+            gameRport[key] = this.mapKillToJson(value.kills);
+        })
+        return gameRport;
+    }
+
+    task_3(logPath: string, gameId: number) {
+        let games: Map<string, any> = this.separateLogByGame(logPath);
+        let game = games.get('game_' + gameId);
+        
     }
     //Função que le o arquivos de log e o divide em linhas dado o caminho do log
-    separateLogByGame(logPath: string): Map<string, any>{
+    separateLogByGame(logPath: string): Map<string, any> {
         let games: Map<string, any> = new Map<string, any>();
         let log = fs.readFileSync(logPath);
         let gameMark: number = 1;
